@@ -1,0 +1,220 @@
+﻿<Page
+    x:Class="Earth_Nations.All_Info_Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Earth_Nations"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+
+
+        <Storyboard x:Name="SoundAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ellipse2" RepeatBehavior="2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.835"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.455"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.815"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0.43"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0.815"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" RepeatBehavior="2" Storyboard.TargetName="path1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" RepeatBehavior="2" Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="41.62"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="41.62"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="-20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="41.62"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="path2" RepeatBehavior="2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="35"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="canvas">
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(TextBlock.Foreground).(Brush.Opacity)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" Storyboard.TargetName="rectangle">
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="rectangle1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="110"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="220"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="330"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="440"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle1">
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" Storyboard.TargetName="rectangle1">
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0.74"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="0.32"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+
+    </Page.Resources>
+    <Grid Background="Black">
+        <Canvas x:Name="canvas" Margin="503,224,527,238" RenderTransformOrigin="0.5,0.5">
+            <Canvas.RenderTransform>
+                <CompositeTransform ScaleX="0.6" ScaleY="0.6" TranslateX="13" TranslateY="-17"/>
+            </Canvas.RenderTransform>
+            <Path x:Name="path" Data="M292.823,163.66 L298.757,163.66 L298.724,164.05 C291.963,235.09 235.653,291.683 164.743,298.885 L161.38,299.184 L161.406,298.659 L161.406,295.073 L163.231,294.911 C231.778,287.949 286.211,233.242 292.747,164.57 z M0,162.988 L0.729463,163.255 C1.57492,163.518 2.47381,163.66 3.40579,163.66 L3.99001,163.66 L4.08639,164.799 C10.8398,234.583 67.0603,289.896 137.25,295.236 L139.406,295.373 L139.406,298.659 L139.439,299.322 L137.865,299.222 C65.2553,293.697 7.09613,236.478 0.109857,164.287 z M161.406,0.13841 L164.743,0.434703 C233.29,7.39604 288.193,60.5116 297.884,128.215 L298.336,131.66 L292.162,131.66 L291.935,129.93 C282.566,64.4833 229.493,13.1381 163.231,6.40887 L161.406,6.24677 z M139.406,0 L139.406,5.94641 L137.25,6.08306 C69.3999,11.2456 14.6033,63.1036 4.9253,129.591 L4.6495,131.66 L3.40579,131.66 C2.47381,131.66 1.57492,131.802 0.729463,132.065 L0.420832,132.178 L0.501646,131.436 C9.03878,60.9486 66.4655,5.53032 137.865,0.097657 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="300" Stretch="Fill" StrokeThickness="17" UseLayoutRounding="False" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <CompositeTransform ScaleX="2" ScaleY="2"/>
+                </Path.RenderTransform>
+                <Path.Projection>
+                    <PlaneProjection RotationX="-177"/>
+                </Path.Projection>
+            </Path>
+            <Path x:Name="path1" Data="M292.823,163.66 L298.757,163.66 L298.724,164.05 C291.963,235.09 235.653,291.683 164.743,298.885 L161.38,299.184 L161.406,298.659 L161.406,295.073 L163.231,294.911 C231.778,287.949 286.211,233.242 292.747,164.57 z M0,162.988 L0.729463,163.255 C1.57492,163.518 2.47381,163.66 3.40579,163.66 L3.99001,163.66 L4.08639,164.799 C10.8398,234.583 67.0603,289.896 137.25,295.236 L139.406,295.373 L139.406,298.659 L139.439,299.322 L137.865,299.222 C65.2553,293.697 7.09613,236.478 0.109857,164.287 z M161.406,0.13841 L164.743,0.434703 C233.29,7.39604 288.193,60.5116 297.884,128.215 L298.336,131.66 L292.162,131.66 L291.935,129.93 C282.566,64.4833 229.493,13.1381 163.231,6.40887 L161.406,6.24677 z M139.406,0 L139.406,5.94641 L137.25,6.08306 C69.3999,11.2456 14.6033,63.1036 4.9253,129.591 L4.6495,131.66 L3.40579,131.66 C2.47381,131.66 1.57492,131.802 0.729463,132.065 L0.420832,132.178 L0.501646,131.436 C9.03878,60.9486 66.4655,5.53032 137.865,0.097657 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="270" Stretch="Fill" StrokeThickness="17" UseLayoutRounding="False" VerticalAlignment="Top" Width="270" RenderTransformOrigin="0.5,0.5" Canvas.Left="12" Canvas.Top="16">
+                <Path.Projection>
+                    <PlaneProjection RotationX="-177"/>
+                </Path.Projection>
+                <Path.RenderTransform>
+                    <CompositeTransform Rotation="41.62" ScaleX="2" ScaleY="2"/>
+                </Path.RenderTransform>
+            </Path>
+            <Path x:Name="path2" Data="M292.823,163.66 L298.757,163.66 L298.724,164.05 C291.963,235.09 235.653,291.683 164.743,298.885 L161.38,299.184 L161.406,298.659 L161.406,295.073 L163.231,294.911 C231.778,287.949 286.211,233.242 292.747,164.57 z M0,162.988 L0.729463,163.255 C1.57492,163.518 2.47381,163.66 3.40579,163.66 L3.99001,163.66 L4.08639,164.799 C10.8398,234.583 67.0603,289.896 137.25,295.236 L139.406,295.373 L139.406,298.659 L139.439,299.322 L137.865,299.222 C65.2553,293.697 7.09613,236.478 0.109857,164.287 z M161.406,0.13841 L164.743,0.434703 C233.29,7.39604 288.193,60.5116 297.884,128.215 L298.336,131.66 L292.162,131.66 L291.935,129.93 C282.566,64.4833 229.493,13.1381 163.231,6.40887 L161.406,6.24677 z M139.406,0 L139.406,5.94641 L137.25,6.08306 C69.3999,11.2456 14.6033,63.1036 4.9253,129.591 L4.6495,131.66 L3.40579,131.66 C2.47381,131.66 1.57492,131.802 0.729463,132.065 L0.420832,132.178 L0.501646,131.436 C9.03878,60.9486 66.4655,5.53032 137.865,0.097657 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="240" Stretch="Fill" StrokeThickness="17" UseLayoutRounding="False" VerticalAlignment="Top" Width="240" RenderTransformOrigin="0.5,0.5" Canvas.Left="28" Canvas.Top="32">
+                <Path.Projection>
+                    <PlaneProjection RotationX="-177"/>
+                </Path.Projection>
+                <Path.RenderTransform>
+                    <CompositeTransform Rotation="0.552" ScaleX="2" ScaleY="2"/>
+                </Path.RenderTransform>
+            </Path>
+            <Ellipse x:Name="ellipse2" Fill="#FF25DAEC" Height="150" Canvas.Left="74" StrokeThickness="17" Canvas.Top="73" Width="150" Stroke="Black" Opacity="0.61" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <CompositeTransform ScaleX="2" ScaleY="2"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse Fill="#FF20A6B4" Height="180" Canvas.Left="58" StrokeThickness="17" Canvas.Top="59" Width="180" Stroke="Black" Opacity="0.205" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <CompositeTransform ScaleX="2" ScaleY="2"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+        </Canvas>
+        <Rectangle x:Name="rectangle" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="65" Margin="544,75,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.5,0.5" Opacity="0.39">
+            <Rectangle.Projection>
+                <PlaneProjection GlobalOffsetX="-1"/>
+            </Rectangle.Projection>
+        </Rectangle>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="51" Margin="562,82,0,0" TextWrapping="Wrap" Text="Earth Nations " VerticalAlignment="Top" Width="211" FontSize="32" FontFamily="Comic Sans MS"/>
+        <Rectangle x:Name="rectangle1" HorizontalAlignment="Left" Height="32" Margin="450,602,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="440" RadiusY="11.333" RadiusX="11.333">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FF25DAEC" Opacity="0.74"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="490,598,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="504,598,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="533,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="545,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="573,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="585,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="612,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="624,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="655,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="669,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="698,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="713,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="740,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="754,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="781,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="794,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="819,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FF060606" HorizontalAlignment="Left" Height="46" Margin="831,597,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-29"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <MediaElement Name="voice" HorizontalAlignment="Left" Height="100" Margin="1196,361,0,0" VerticalAlignment="Top" Width="100" Source="EA.mp3"/>
+        <MediaElement HorizontalAlignment="Left" Height="100" Margin="1145,543,0,0" VerticalAlignment="Top" Width="100"/>
+    </Grid>
+</Page>
+

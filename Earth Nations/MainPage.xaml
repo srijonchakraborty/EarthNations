@@ -1,0 +1,518 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Earth_Nations"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Bing.Maps"
+    x:Class="Earth_Nations.MainPage"
+    mc:Ignorable="d">
+    <Page.Resources>
+
+        <Storyboard x:Name="earthanimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="ellipse" RepeatBehavior="Forever">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ellipse">
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="SoundAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ellipse2" RepeatBehavior="Forever">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.835"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.455"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.815"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0.43"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0.815"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" RepeatBehavior="Forever" Storyboard.TargetName="path1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" RepeatBehavior="Forever" Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0" Value="41.62"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="41.62"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="-20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="41.62"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="path2" RepeatBehavior="Forever">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="35"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="NinfoAnimation"/>
+        <Storyboard x:Name="flagGone">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(TextBlock.Foreground).(Brush.Opacity)" Storyboard.TargetName="NInfo">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetY)" Storyboard.TargetName="path3">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="550"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetY)" Storyboard.TargetName="canvas">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-167"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-330"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="flagUp">
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(TextBlock.Foreground).(Brush.Opacity)" Storyboard.TargetName="NInfo">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3.3" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.8" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetY)" Storyboard.TargetName="path3">
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="550"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetY)" Storyboard.TargetName="canvas">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-555"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-335"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="-167.4"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="Click">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="canvas1">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="path4">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.9"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="path5">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.8"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="path6">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.8"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Name="MAINGRID" Background="Black" Tapped="MyTapped" Margin="0,1,0,-1">
+        <MediaElement x:Name="Earth_video" IsLooping="True" AutoPlay="True" HorizontalAlignment="Left" Height="290" Margin="970,421,0,0" VerticalAlignment="Top" Width="376" Source="EarthAnimation.mp4" RenderTransformOrigin="0.5,0.5">
+            <MediaElement.RenderTransform>
+                <CompositeTransform/>
+            </MediaElement.RenderTransform>
+        </MediaElement>
+        <Ellipse x:Name="ellipse" HorizontalAlignment="Left" Height="188" Margin="1065,593,0,-13" Stroke="#FF74BFCB" StrokeThickness="8" VerticalAlignment="Top" Width="188" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <CompositeTransform ScaleX="1.15" ScaleY="1.15"/>
+            </Ellipse.RenderTransform>
+            <Ellipse.Projection>
+                <PlaneProjection RotationX="-76"/>
+            </Ellipse.Projection>
+        </Ellipse>
+        <Canvas Margin="-6,511,1072,-43">
+        	<Path x:Name="path" Data="M292.823,163.66 L298.757,163.66 L298.724,164.05 C291.963,235.09 235.653,291.683 164.743,298.885 L161.38,299.184 L161.406,298.659 L161.406,295.073 L163.231,294.911 C231.778,287.949 286.211,233.242 292.747,164.57 z M0,162.988 L0.729463,163.255 C1.57492,163.518 2.47381,163.66 3.40579,163.66 L3.99001,163.66 L4.08639,164.799 C10.8398,234.583 67.0603,289.896 137.25,295.236 L139.406,295.373 L139.406,298.659 L139.439,299.322 L137.865,299.222 C65.2553,293.697 7.09613,236.478 0.109857,164.287 z M161.406,0.13841 L164.743,0.434703 C233.29,7.39604 288.193,60.5116 297.884,128.215 L298.336,131.66 L292.162,131.66 L291.935,129.93 C282.566,64.4833 229.493,13.1381 163.231,6.40887 L161.406,6.24677 z M139.406,0 L139.406,5.94641 L137.25,6.08306 C69.3999,11.2456 14.6033,63.1036 4.9253,129.591 L4.6495,131.66 L3.40579,131.66 C2.47381,131.66 1.57492,131.802 0.729463,132.065 L0.420832,132.178 L0.501646,131.436 C9.03878,60.9486 66.4655,5.53032 137.865,0.097657 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="300" Stretch="Fill" StrokeThickness="17" UseLayoutRounding="False" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.5,0.5">
+        		<Path.Projection>
+        			<PlaneProjection RotationX="-177"/>
+        		</Path.Projection>
+        		<Path.RenderTransform>
+        			<CompositeTransform ScaleY="0.60000002384185791" ScaleX="0.60000002384185791"/>
+        		</Path.RenderTransform>
+        	</Path>
+        	<Path x:Name="path1" Data="M292.823,163.66 L298.757,163.66 L298.724,164.05 C291.963,235.09 235.653,291.683 164.743,298.885 L161.38,299.184 L161.406,298.659 L161.406,295.073 L163.231,294.911 C231.778,287.949 286.211,233.242 292.747,164.57 z M0,162.988 L0.729463,163.255 C1.57492,163.518 2.47381,163.66 3.40579,163.66 L3.99001,163.66 L4.08639,164.799 C10.8398,234.583 67.0603,289.896 137.25,295.236 L139.406,295.373 L139.406,298.659 L139.439,299.322 L137.865,299.222 C65.2553,293.697 7.09613,236.478 0.109857,164.287 z M161.406,0.13841 L164.743,0.434703 C233.29,7.39604 288.193,60.5116 297.884,128.215 L298.336,131.66 L292.162,131.66 L291.935,129.93 C282.566,64.4833 229.493,13.1381 163.231,6.40887 L161.406,6.24677 z M139.406,0 L139.406,5.94641 L137.25,6.08306 C69.3999,11.2456 14.6033,63.1036 4.9253,129.591 L4.6495,131.66 L3.40579,131.66 C2.47381,131.66 1.57492,131.802 0.729463,132.065 L0.420832,132.178 L0.501646,131.436 C9.03878,60.9486 66.4655,5.53032 137.865,0.097657 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="270" Stretch="Fill" StrokeThickness="17" UseLayoutRounding="False" VerticalAlignment="Top" Width="270" RenderTransformOrigin="0.5,0.5" Canvas.Left="13.2" Canvas.Top="15.6">
+        		<Path.Projection>
+        			<PlaneProjection RotationX="-177"/>
+        		</Path.Projection>
+        		<Path.RenderTransform>
+        			<CompositeTransform Rotation="41.619998931884766" ScaleY="0.60000002384185791" ScaleX="0.60000002384185791"/>
+        		</Path.RenderTransform>
+        	</Path>
+        	<Path x:Name="path2" Data="M292.823,163.66 L298.757,163.66 L298.724,164.05 C291.963,235.09 235.653,291.683 164.743,298.885 L161.38,299.184 L161.406,298.659 L161.406,295.073 L163.231,294.911 C231.778,287.949 286.211,233.242 292.747,164.57 z M0,162.988 L0.729463,163.255 C1.57492,163.518 2.47381,163.66 3.40579,163.66 L3.99001,163.66 L4.08639,164.799 C10.8398,234.583 67.0603,289.896 137.25,295.236 L139.406,295.373 L139.406,298.659 L139.439,299.322 L137.865,299.222 C65.2553,293.697 7.09613,236.478 0.109857,164.287 z M161.406,0.13841 L164.743,0.434703 C233.29,7.39604 288.193,60.5116 297.884,128.215 L298.336,131.66 L292.162,131.66 L291.935,129.93 C282.566,64.4833 229.493,13.1381 163.231,6.40887 L161.406,6.24677 z M139.406,0 L139.406,5.94641 L137.25,6.08306 C69.3999,11.2456 14.6033,63.1036 4.9253,129.591 L4.6495,131.66 L3.40579,131.66 C2.47381,131.66 1.57492,131.802 0.729463,132.065 L0.420832,132.178 L0.501646,131.436 C9.03878,60.9486 66.4655,5.53032 137.865,0.097657 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="240" Stretch="Fill" StrokeThickness="17" UseLayoutRounding="False" VerticalAlignment="Top" Width="240" RenderTransformOrigin="0.5,0.5" Canvas.Left="28.8" Canvas.Top="31.2">
+        		<Path.Projection>
+        			<PlaneProjection RotationX="-177"/>
+        		</Path.Projection>
+        		<Path.RenderTransform>
+        			<CompositeTransform Rotation="0.55199998617172241" ScaleY="0.60000002384185791" ScaleX="0.60000002384185791"/>
+        		</Path.RenderTransform>
+        	</Path>
+        	<Ellipse x:Name="ellipse2" Fill="#FF25DAEC" StrokeThickness="17" Stroke="Black" Opacity="0.61" RenderTransformOrigin="0.5,0.5" Height="150" Canvas.Left="74" Canvas.Top="74" Width="150">
+        		<Ellipse.RenderTransform>
+        			<CompositeTransform ScaleY="0.60000002384185791" ScaleX="0.60000002384185791"/>
+        		</Ellipse.RenderTransform>
+        	</Ellipse>
+        	<Ellipse Fill="#FF20A6B4" StrokeThickness="17" Stroke="Black" Opacity="0.205" RenderTransformOrigin="0.5,0.5" Height="180" Canvas.Left="59" Canvas.Top="59" Width="180">
+        		<Ellipse.RenderTransform>
+        			<CompositeTransform ScaleY="0.60000002384185791" ScaleX="0.60000002384185791"/>
+        		</Ellipse.RenderTransform>
+        	</Ellipse>
+
+        	<MediaElement x:Name="AnthemPlayer" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="38" MediaEnded="AnthemPlayer_MediaEnded" MediaOpened="AnthemPlayer_MediaOpened" Canvas.Left="16" Canvas.Top="211"/>
+        </Canvas>
+        <Ellipse x:Name="ellipse1" HorizontalAlignment="Left" Height="152" StrokeThickness="36" VerticalAlignment="Top" Width="148" Fill="#FF25DAEC" Opacity="0.49" Stroke="Black" RenderTransformOrigin="0.5,0.5" Margin="1083,607,0,0">
+        	<Ellipse.Projection>
+        		<PlaneProjection RotationX="-260" GlobalOffsetY="6"/>
+        	</Ellipse.Projection>
+        	<Ellipse.RenderTransform>
+        		<CompositeTransform ScaleY="0.60000002384185791" ScaleX="0.60000002384185791"/>
+        	</Ellipse.RenderTransform>
+        </Ellipse>
+        <Path Data="M248,706.383 L919.547,706.383 L919.547,712 L248,712 z M38.9914,0 L1296.46,0 C1303.19,-1.6E-05 1309.52,1.4736 1315.05,4.06788 L1318,5.61736 L45.49,5.61736 C23.9557,5.61735 6.49857,20.7073 6.49855,39.3215 L6.49855,547.692 L0,547.692 L0,33.7041 C8E-06,15.0899 17.4571,-1.6E-05 38.9914,0 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="748" Margin="22,10,0,0" Stretch="Fill" Stroke="Black" StrokeThickness="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="1334" Opacity="0.66"/>
+        <Rectangle Fill="#FF25DAEC" HorizontalAlignment="Left" Height="25" Margin="1097.178,25.333,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="237" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.39">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-56"/>
+            </Rectangle.RenderTransform>
+            <Rectangle.Projection>
+                <PlaneProjection GlobalOffsetX="-1"/>
+            </Rectangle.Projection>
+        </Rectangle>
+        <TextBlock HorizontalAlignment="Left" Height="25" Margin="1149,21,0,0" TextWrapping="Wrap" Text="Earth Nations " VerticalAlignment="Top" Width="140" FontSize="21.333" FontFamily="Comic Sans MS"/>
+        <Canvas Margin="443,290,498,46">
+            <TextBlock x:Name="NInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="411" Width="369" FontFamily="Comic Sans MS" FontSize="17" Opacity="0.63" Canvas.Left="30" Canvas.Top="22" SelectionHighlightColor="#FF9F85DC">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0">
+                        <GradientStop Color="#FFDFF7FB" Offset="0.004"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
+            <Path x:Name="path3" Data="M8,40.493 C5.23857,40.493 3,42.7316 3,45.493 C3,48.2544 5.23857,50.493 8,50.493 C10.7614,50.493 13,48.2544 13,45.493 C13,42.7316 10.7614,40.493 8,40.493 z M307.667,3.49299 L300.277,12.4926 L137.983,12.4926 L126.25,4.493 L6.75,5.743 L16.0111,12.4926 L16,12.4926 L16,354.243 L16,355.493 L16,357.618 L20.5,357.493 L20.4989,357.485 L280.881,356.921 L294.333,366.493 L310.333,366.493 L319.205,356.839 L325,356.826 L325,356.68 L328,356.493 L327.333,131.826 L324.306,125.237 L324,23.16 L328.667,18.16 z M309.769,0 L315.333,3.82557 L325.333,2.15958 L324.667,11.4926 L332,16.2375 L332,359.59 L320.667,359.826 L312,370.16 L312.14,370.493 L293.594,370.493 L280,360.826 L279.987,360.993 L8.67165,362.428 L9.66701,62.493 L0,62.0534 L0,32.493 L13,32.493 L13,29.493 L0,29.493 L0,26.493 L13,26.493 L13,23.493 L0,23.493 L0,20.493 L13,20.493 L13,17.493 L0,17.493 L0,0.485525 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="455.993" Opacity="0.85" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="427" >
+                <Path.Projection>
+                    <PlaneProjection GlobalOffsetY="550"/>
+                </Path.Projection>
+            </Path>
+        </Canvas>
+        <Canvas x:Name="canvas" Margin="122,25,477,411">
+            <Canvas.Projection>
+                <PlaneProjection/>
+            </Canvas.Projection>
+            <Path Data="M26.3608,2.49999 L3.00101,22.4968 L3.00101,204.38 L26.3706,224.5 L395.477,224.5 L422.001,199.666 L422.001,22.5575 L397.232,2.49999 z M24.3642,0 L400.031,0 L425,20.4872 L425,200.562 L397.093,227 L23.9815,227 L0,206.166 L0,20.6155 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="250" Opacity="0.66" Stretch="Fill" Stroke="Black" StrokeThickness="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="446" Canvas.Left="320.82" Canvas.Top="1.667" />
+            <Rectangle Fill="#FF25DAEC" HorizontalAlignment="Left" Height="192" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="3" Opacity="0.375" Canvas.Left="755" Canvas.Top="30"/>
+            <Rectangle Fill="#FF25DAEC" HorizontalAlignment="Left" Height="177.65" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="18.5" Opacity="0.42" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Canvas.Left="627.781" Canvas.Top="147.425">
+                <Rectangle.RenderTransform>
+                    <CompositeTransform Rotation="90" SkewY="60"/>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Fill="#FF25DAEC" HorizontalAlignment="Left" Height="192" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="3" Opacity="0.375" Canvas.Left="330" Canvas.Top="30"/>
+            <Rectangle Fill="#FF25DAEC" HorizontalAlignment="Left" Height="174.498" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="3" Opacity="0.375" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Canvas.Left="439.071" Canvas.Top="157.001">
+                <Rectangle.RenderTransform>
+                    <CompositeTransform Rotation="90"/>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <TextBlock Name="NameOfNation" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="Saint Vincent and the Grenadines" VerticalAlignment="Top" Width="169" FontSize="10.667" FontFamily="Comic Sans MS" TextAlignment="Center" Canvas.Left="550" Canvas.Top="228"/>
+        </Canvas>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="209" Margin="480,38,0,0" VerticalAlignment="Top" Width="380" Opacity="0" />
+        <Rectangle Fill="#FF25DAEC" HorizontalAlignment="Left" Height="25" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="261" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.39" Margin="118.5,24,0,0">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="54"/>
+            </Rectangle.RenderTransform>
+            <Rectangle.Projection>
+                <PlaneProjection GlobalOffsetX="-1"/>
+            </Rectangle.Projection>
+        </Rectangle>
+        <ScrollViewer HorizontalAlignment="Left" Height="438" Margin="72,73,0,0" VerticalAlignment="Top" Width="334">
+            <StackPanel  Margin="0" >
+                <TextBlock Name="Abkhazia" Text="Abkhazia" Tapped="Abkhazia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS" SelectionHighlightColor="#FF20BFD8" />
+                <TextBlock Name="Afghanistan" Text="Afghanistan" Tapped="Afghanistan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Albania" Text="Albania" Tapped="Albania_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Algeria" Text="Algeria" Tapped="Algeria_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Andorra" Text="Andorra" Tapped="Andorra_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Angola" Text="Angola" Tapped="Angola_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Antigua" Text="Antigua" Tapped="Antigua_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Argentina" Text="Argentina" Tapped="Argentina_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Armenia" Text="Armenia" Tapped="Armenia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="ARUBA" Text="Aruba" Tapped="ARUBA_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Australia" Text="Australia" Tapped="Australia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Austria" Text="Austria" Tapped="Austria_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Azerbaijan" Text="Azerbaijan" Tapped="Azerbaijan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Bahamas" Text="Bahamas" Tapped="Bahamas_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS" SelectionHighlightColor="#FF17B497"/>
+                <TextBlock Name="Bahrain" Text="Bahrain" Tapped="Bahrain_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Bangladesh" Text="Bangladesh" Tapped="Bangladesh_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Barbados" Text="Barbados" Tapped="Barbados_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Belarus" Text="Belarus" Tapped="Belarus_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Belgium" Text="Belgium" Tapped="Belgium_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Belize" Text="Belize" Tapped="Belize_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Benin" Text="Benin" Tapped="Benin_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Bermuda" Text="Bermuda" Tapped="Bermuda_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Bhutan" Text="Bhutan" Tapped="Bhutan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Bolivia" Text="Bolivia" Tapped="Bolivia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Bosnia_and_Herzegovina" Text="Bosnia and Herzegovina" Tapped="Bosnia_and_Herzegovina_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Botswana" Text="Botswana" Tapped="Botswana_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Brazil" Text="Brazil" Tapped="Brazil_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Brunei" Text="Brunei" Tapped="Brunei_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Bulgaria" Text="Bulgaria" Tapped="Bulgaria_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Burkina_Faso" Text="Burkina Faso" Tapped="Burkina_Faso_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Burundi" Text="Burundi" Tapped="Burundi_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Cambodia" Text="Cambodia" Tapped="Cambodia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Cameroon" Text="Cameroon" Tapped="Cameroon_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Canada" Text="Canada" Tapped="Canada_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Cape_Verde" Text="Cape Verde" Tapped="Cape_Verde_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Central_African_Republic" Text="Central African Republic" Tapped="Central_African_Republic_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Chad" Text="Chad" Tapped="Chad_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Chile" Text="Chile" Tapped="Chile_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="China" Text="China" Tapped="China_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Colombia" Text="Colombia" Tapped="Colombia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Comoros" Text="Comoros" Tapped="Comoros_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Congo" Text="Congo" Tapped="Congo_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Costa_Rica" Text="Costa Rica" Tapped="Costa_Rica_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Côte_d_Ivoire" Text="Côte_d'Ivoire" Tapped="Côte_d_Ivoire_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Croatia" Text="Croatia" Tapped="Croatia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Cuba" Text="Cuba" Tapped="Cuba_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Cyprus" Text="Cyprus" Tapped="Cyprus_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Czech_Republic" Text="Czech Republic" Tapped="Czech_Republic_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Denmark" Text="Denmark" Tapped="Denmark_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Djibouti" Text="Djibouti" Tapped="Djibouti_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Dominica" Text="Dominica" Tapped="Dominica_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Dominican_Republic" Text="Dominican Republic" Tapped="Dominican_Republic_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="East_Timor" Text="East Timor" Tapped="East_Timor_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Ecuador" Text="Ecuador" Tapped="Ecuador_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Egypt" Text="Egypt" Tapped="Egypt_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="El_Salvador" Text="El Salvador" Tapped="El_Salvador_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Equatorial_Guinea" Text="Equatorial Guinea" Tapped="Equatorial_Guinea_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Eritrea" Text="Eritrea" Tapped="Eritrea_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Estonia" Text="Estonia" Tapped="Estonia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Ethiopia" Text="Ethiopia" Tapped="Ethiopia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Federated_States_of_Micronesia" Text="Federated States of Micronesia" Tapped="Federated_States_of_Micronesia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Fiji" Text="Fiji" Tapped="Fiji_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Finland" Text="Finland" Tapped="Finland_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="France" Text="France" Tapped="France_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Gabon" Text="Gabon" Tapped="Gabon_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Gambia" Text="Gambia" Tapped="Gambia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Georgia" Text="Georgia" Tapped="Georgia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Germany" Text="Germany" Tapped="Germany_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Ghana" Text="Ghana" Tapped="Ghana_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Greece" Text="Greece" Tapped="Greece_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Grenada" Text="Grenada" Tapped="Grenada_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Guatemala" Text="Guatemala" Tapped="Guatemala_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Guinea" Text="Guinea" Tapped="Guinea_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Guinea_Bissau" Text="Guinea-Bissau" Tapped="Guinea_Bissau_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Guyana" Text="Guyana" Tapped="Guyana_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Haiti" Text="Haiti" Tapped="Haiti_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Honduras" Text="Honduras" Tapped="Honduras_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Hungary" Text="Hungary" Tapped="Hungary_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Iceland" Text="Iceland" Tapped="Iceland_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="India" Text="India" Tapped="India_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Indonesia" Text="Indonesia" Tapped="Indonesia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Iran" Text="Iran" Tapped="Iran_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Iraq" Text="Iraq" Tapped="Iraq_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Ireland" Text="Ireland" Tapped="Ireland_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Israel" Text="Israel" Tapped="Israel_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Italy" Text="Italy" Tapped="Italy_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Jamaica" Text="Jamaica" Tapped="Jamaica_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Japan" Text="Japan" Tapped="Japan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Jordan" Text="Jordan" Tapped="Jordan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Kazakhstan" Text="Kazakhstan" Tapped="Kazakhstan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Kenya" Text="Kenya" Tapped="Kenya_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Kiribati" Text="Kiribati" Tapped="Kiribati_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Korea_North" Text="Korea(North)" Tapped="Korea_North_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Korea_South" Text="Korea(South)" Tapped="Korea_South_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Kosovo" Text="Kosovo" Tapped="Kosovo_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Kuwait" Text="Kuwait" Tapped="Kuwait_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Kyrgyzstan" Text="Kyrgyzstan" Tapped="Kyrgyzstan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Laos" Text="Laos" Tapped="Laos_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Latvia" Text="Latvia" Tapped="Latvia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Lebanon" Text="Lebanon" Tapped="Lebanon_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Lesotho" Text="Lesotho" Tapped="Lesotho_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Liberia" Text="Liberia" Tapped="Liberia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Libya" Text="Libya" Tapped="Libya_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Liechtenstein" Text="Liechtenstein" Tapped="Liechtenstein_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Lithuania" Text="Lithuania" Tapped="Lithuania_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Luxembourg" Text="Luxembourg" Tapped="Luxembourg_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Macedonia" Text="Macedonia" Tapped="Macedonia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Madagascar" Text="Madagascar" Tapped="Madagascar_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Malawi" Text="Malawi" Tapped="Malawi_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Malaysia" Text="Malaysia" Tapped="Malaysia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Maldives" Text="Maldives" Tapped="Maldives_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Mali" Text="Mali" Tapped="Mali_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Malta" Text="Malta" Tapped="Malta_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Marshall_Islands" Text="Marshall Islands" Tapped="Marshall_Islands_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Mauritania" Text="Mauritania" Tapped="Mauritania_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Mauritius" Text="Mauritius" Tapped="Mauritius_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Mexico" Text="Mexico" Tapped="Mexico_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Moldova" Text="Moldova" Tapped="Moldova_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Monaco" Text="Monaco" Tapped="Monaco_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Mongolia" Text="Mongolia" Tapped="Mongolia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Montenegro" Text="Montenegro" Tapped="Montenegro_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Morocco" Text="Morocco" Tapped="Morocco_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Mozambique" Text="Mozambique" Tapped="Mozambique_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Myanmar" Text="Myanmar" Tapped="Myanmar_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Nagorno_Karabakh" Text="Nagorno-Karabakh" Tapped="Nagorno_Karabakh_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Namibia" Text="Namibia" Tapped="Namibia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Nauru" Text="Nauru" Tapped="Nauru_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Nepal" Text="Nepal" Tapped="Nepal_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Netherlands" Text="Netherlands" Tapped="Netherlands_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="New_Zealand" Text="New Zealand" Tapped="New_Zealand_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Nicaragua" Text="Nicaragua" Tapped="Nicaragua_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Niger" Text="Niger" Tapped="Niger_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Nigeria" Text="Nigeria" Tapped="Nigeria_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Northern_Cyprus" Text="Northern Cyprus" Tapped="Northern_Cyprus_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Norway" Text="Norway" Tapped="Norway_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Oman" Text="Oman" Tapped="Oman_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Pakistan" Text="Pakistan" Tapped="Pakistan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Palau" Text="Palau" Tapped="Palau_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Palestine" Text="Palestine" Tapped="Palestine_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Panama" Text="Panama" Tapped="Panama_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Papua_New_Guinea" Text="Papua New Guinea" Tapped="Papua_New_Guinea_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Paraguay_Cyprus" Text="Paraguay" Tapped="Paraguay_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Peru" Text="Peru" Tapped="Peru_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Philippines" Text="Philippines" Tapped="Philippines_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Poland" Text="Poland" Tapped="Poland_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Portugal" Text="Portugal" Tapped="Portugal_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Qatar" Text="Qatar" Tapped="Qatar_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Romania" Text="Romania" Tapped="Romania_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Russia" Text="Russia" Tapped="Russia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Rwanda" Text="Rwanda" Tapped="Rwanda_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Saint_Kitts_and_Nevis" Text="Saint Kitts and Nevis" Tapped="Saint_Kitts_and_Nevis_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Saint_Lucia" Text="Saint Lucia" Tapped="Saint_Lucia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Saint_Vincent_and_the_Grenadines" Text="Saint Vincent and the Grenadines" Tapped="Saint_Vincent_and_the_Grenadines_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Samoa" Text="Samoa" Tapped="Samoa_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="San_Marino" Text="San Marino" Tapped="San_Marino_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="São_Tomé_and_Príncipe" Text="São Tomé and Príncipe" Tapped="São_Tomé_and_Príncipe_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Saudi_Arabia" Text="Saudi Arabia" Tapped="Saudi_Arabia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Senegal" Text="Senegal" Tapped="Senegal_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Serbia" Text="Serbia" Tapped="Serbia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Seychelles" Text="Seychelles" Tapped="Seychelles_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Sierra_Leone" Text="Sierra Leone" Tapped="Sierra_Leone_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Singapore" Text="Singapore" Tapped="Singapore_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Slovakia" Text="Slovakia" Tapped="Slovakia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Slovenia" Text="Slovenia" Tapped="Slovenia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Solomon_Islands" Text="Solomon Islands" Tapped="Solomon_Islands_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Somalia" Text="Somalia" Tapped="Somalia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Somaliland" Text="Somaliland" Tapped="Somaliland_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="South_Africa" Text="South Africa" Tapped="South_Africa_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="South_Sudan" Text="South Sudan" Tapped="South_Sudan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Spain" Text="Spain" Tapped="Spain_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Sri_Lanka" Text="Sri Lanka" Tapped="Sri_Lanka_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Sudan" Text="Sudan" Tapped="Sudan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Suriname" Text="Suriname" Tapped="Suriname_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Swaziland" Text="Swaziland" Tapped="Swaziland_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Sweden" Text="Sweden" Tapped="Sweden_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Switzerland" Text="Switzerland" Tapped="Switzerland_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Syria" Text="Syria" Tapped="Syria_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Republic_of_China_Taiwan" Text="Taiwan" Tapped="Republic_of_China_Taiwan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Tajikistan" Text="Tajikistan" Tapped="Tajikistan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Tanzania" Text="Tanzania" Tapped="Tanzania_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Thailand" Text="Thailand" Tapped="Thailand_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Togo" Text="Togo" Tapped="Togo_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Tonga" Text="Tonga" Tapped="Tonga_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Transnistria" Text="Transnistria" Tapped="Transnistria_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Trinidad_and_Tobago" Text="Trinidad and Tobago" Tapped="Trinidad_and_Tobago_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Tunisia" Text="Tunisia" Tapped="Tunisia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Turkey" Text="Turkey" Tapped="Turkey_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Turkmenistan" Text="Turkmenistan" Tapped="Turkmenistan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Tuvalu" Text="Tuvalu" Tapped="Tuvalu_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Uganda" Text="Uganda" Tapped="Uganda_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Ukraine" Text="Ukraine" Tapped="Ukraine_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="United_Arab_Emirates" Text="United Arab Emirates" Tapped="United_Arab_Emirates_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="United_Kingdom" Text="United Kingdom" Tapped="United_Kingdom_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="United_States" Text="United States" Tapped="United_States_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Uruguay" Text="Uruguay" Tapped="Uruguay_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Uzbekistan" Text="Uzbekistan" Tapped="Uzbekistan_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Vanuatu" Text="Vanuatu" Tapped="Vanuatu_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Vatican_City" Text="Vatican City" Tapped="Vatican_City_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Venezuela" Text="Venezuela" Tapped="Venezuela_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Vietnam" Text="Vietnam" Tapped="Vietnam_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Western_Sahara" Text="Western Sahara" Tapped="Western_Sahara_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Yemen" Text="Yemen" Tapped="Yemen_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Zambia" Text="Zambia" Tapped="Zambia_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBlock Name="Zimbabwe" Text="Zimbabwe" Tapped="Zimbabwe_event" TextWrapping="Wrap"  FontSize="18" FontFamily="Comic Sans MS"/>
+            </StackPanel>
+        </ScrollViewer>
+        <TextBlock HorizontalAlignment="Left" Height="30" Margin="145,19,0,0" TextWrapping="Wrap" Text="Nations" VerticalAlignment="Top" Width="205" TextAlignment="Center" FontSize="24" FontFamily="Comic Sans MS" Foreground="White"/>
+        <Path Data="M38.6624,4.33333 C19.1141,4.33333 3.26724,18.884 3.26725,36.8333 L3.26725,439.833 C3.26724,457.782 19.1141,472.333 38.6624,472.333 L340.338,472.333 C359.886,472.333 375.733,457.782 375.733,439.833 L375.733,36.8333 C375.733,18.884 359.886,4.33333 340.338,4.33333 z M353.951,0 L379,19.7602 L379,448.989 L372.346,461.438 L358.026,472.483 L349,475.333 L29.0003,475.333 L17.7403,471.11 L4.63443,458.809 L2.66726,454 L0,447.523 L0,20.8696 L21.4551,0.313133 z" Fill="#FF25DAEC" HorizontalAlignment="Left" Height="475.333" Margin="49,54.667,0,0" Opacity="0.66" Stretch="Fill" Stroke="Black" StrokeThickness="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="379" />
+        <ComboBox HorizontalAlignment="Left" Margin="1289,-86,-43,0" VerticalAlignment="Top" Width="120"/>
+
+        <Maps:Map Name="MyMap" ZoomLevel="5" Credentials="As2CwN_HcsNKY3J98_64PSXP0vcDK-DSptLrZrHuIFCRMmsTH1GGELOjPoZVF8vG" HorizontalAlignment="Left" Margin="915,73,0,0" VerticalAlignment="Top" Height="324" Width="418">
+            <!--<Maps:Map.Center>
+                <Maps:Location x:Name="MyLocation" Latitude="23.709921" Longitude="90.40714300000002" />
+                
+            </Maps:Map.Center>
+            <Maps:Pushpin x:Name="MyPushPin" Text="↓">
+                <Maps:MapLayer.Position>
+                    <Maps:Location Latitude="23.709921" Longitude="90.40714300000002" />
+                </Maps:MapLayer.Position>
+                <Maps:Pushpin.RenderTransform>
+                    <ScaleTransform ScaleX="1.3" ScaleY="1.3" CenterX="20" CenterY="17"></ScaleTransform>
+                </Maps:Pushpin.RenderTransform>
+            </Maps:Pushpin>-->
+
+        </Maps:Map>
+        <Path Data="M3,3 L3,322 L405,322 L405,3 z M0,0 L408,0 L408,325 L0,325 z" HorizontalAlignment="Left" Height="352.667" Margin="901.667,59.333,0,0" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="445.333">
+            <Path.Fill>
+                <SolidColorBrush Color="#FF25DAEC" Opacity="0.725"/>
+            </Path.Fill>
+        </Path>
+        <Path Data="M270.993,232 L273,232 L273,252.5 L254,252.5 L254,250.169 L270.993,250.169 z M0,0 L20,0 L20,2.33077 L2.00735,2.33077 L2.00735,22 L0,22 z" HorizontalAlignment="Left" Height="337.334" Margin="908.667,66.333,0,0" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="431.083">
+            <Path.Fill>
+                <SolidColorBrush Color="#FF25DAEC" Opacity="0.51"/>
+            </Path.Fill>
+        </Path>
+        <Slider Name="VolumeControl" Value="100" HorizontalAlignment="Left" Margin="262,603,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" Height="42" Foreground="#FF25DAEC" ValueChanged="VolumeControl_ValueChanged" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Slider.RenderTransform>
+                <CompositeTransform Rotation="-90"/>
+            </Slider.RenderTransform>
+        </Slider>
+        <Rectangle Name="MuteRec" Fill="#FF16F1F1" HorizontalAlignment="Left" Height="47" Margin="322.219,690.75,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Tapped="Canvas_Tapped">
+            <Rectangle.RenderTransform>
+                <CompositeTransform SkewX="-32"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Canvas Margin="290,697,1016,28" Tapped="Canvas_Tapped">
+            <Path Data="M17.1669,0 L17.25,0.304988 C19.1194,2.33674 25.75,9.62241 25.75,13.8046 C25.75,18.3668 21.2848,23.0908 16.9357,26.8536 L16.6668,27.0816 L0,19.2774 L0,8.07349 L16.6157,0.534524 L17.375,0.304988 z" Fill="#FF61D8E4" HorizontalAlignment="Left" Height="27.082" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="25.75" Canvas.Left="12" Canvas.Top="2.5"/>
+            <Rectangle Fill="#FF61D8E4" HorizontalAlignment="Left" Height="12" VerticalAlignment="Top" Width="8" Canvas.Top="11"/>
+            <Rectangle Fill="#FF020202" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="2" Canvas.Left="17" Canvas.Top="7"/>
+            <Path Data="M5.5E-05,20.4957 L7E-06,20.5 L5.5E-05,20.5044 L0,20.5 z M20.5,0 C31.8218,0 41,9.17816 41,20.5 C41,31.8218 31.8218,41 20.5,41 C20.1462,41 19.7945,40.991 19.4451,40.9733 L19.1688,40.9558 L19.3849,40.9402 C28.6789,40.1348 36,31.2911 36,20.5 C36,9.70887 28.6789,0.865161 19.3849,0.059775 L19.1688,0.044179 L19.4451,0.026675 C19.7945,0.008963 20.1462,0 20.5,0 z" Fill="#FF61D8E4" HorizontalAlignment="Left" Height="28" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="35" Canvas.Left="16.422" Canvas.Top="2.5"/>
+            <Path Data="M5.5E-05,20.4957 L7E-06,20.5 L5.5E-05,20.5044 L0,20.5 z M20.5,0 C31.8218,0 41,9.17816 41,20.5 C41,31.8218 31.8218,41 20.5,41 C20.1462,41 19.7945,40.991 19.4451,40.9733 L19.1688,40.9558 L19.3849,40.9402 C28.6789,40.1348 36,31.2911 36,20.5 C36,9.70887 28.6789,0.865161 19.3849,0.059775 L19.1688,0.044179 L19.4451,0.026675 C19.7945,0.008963 20.1462,0 20.5,0 z" Fill="#FF61D8E4" HorizontalAlignment="Left" Height="32.375" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="35" Canvas.Left="24.672"/>
+        </Canvas>
+        <Rectangle Fill="#FF25DAEC" HorizontalAlignment="Left" Height="4" Margin="49,551,0,0" VerticalAlignment="Top" Width="363" Opacity="0.66" Stroke="Black" StrokeThickness="0"/>
+        <Rectangle Fill="#FF25DAEC" HorizontalAlignment="Left" Height="165" Margin="409,575,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="4" Opacity="0.66"/>
+        <!--<Button Name="textbtn" Content="Button" HorizontalAlignment="Left" Margin="287,557,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform x:Name="btnxy" CenterX="10" CenterY="20" />
+            </Button.RenderTransform>
+        </Button>-->
+        <MediaElement Name="SoundBar"  HorizontalAlignment="Left" Height="23" Margin="-81,707,0,0" VerticalAlignment="Top" Width="23" Source="55.mp3" RenderTransformOrigin="0.5,0.5" >
+            <MediaElement.RenderTransform>
+                <CompositeTransform ScaleY="-1"/>
+            </MediaElement.RenderTransform>
+        </MediaElement>
+        <MediaElement Name="mytapaudio" AutoPlay="False" Source="tap.mp3"  />
+        <Canvas x:Name="canvas1" Margin="893,686,437,46" Opacity="0">
+        	<Path x:Name="path4" Data="M18,2.5 C9.43959,2.5 2.5,9.43959 2.5,18 C2.5,26.5604 9.43959,33.5 18,33.5 C26.5604,33.5 33.5,26.5604 33.5,18 C33.5,9.43959 26.5604,2.5 18,2.5 z M18,0.5 C27.665,0.5 35.5,8.33502 35.5,18 C35.5,27.665 27.665,35.5 18,35.5 C8.33502,35.5 0.5,27.665 0.5,18 C0.5,8.33502 8.33502,0.5 18,0.5 z" Fill="#FF74BFCB" HorizontalAlignment="Left" Height="36" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="36"/>
+        	<Path x:Name="path5" Data="M18,2.5 C9.43959,2.5 2.5,9.43959 2.5,18 C2.5,26.5604 9.43959,33.5 18,33.5 C26.5604,33.5 33.5,26.5604 33.5,18 C33.5,9.43959 26.5604,2.5 18,2.5 z M18,0.5 C27.665,0.5 35.5,8.33502 35.5,18 C35.5,27.665 27.665,35.5 18,35.5 C8.33502,35.5 0.5,27.665 0.5,18 C0.5,8.33502 8.33502,0.5 18,0.5 z" Fill="#FF74BFCB" HorizontalAlignment="Left" Height="24.667" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="24" Canvas.Left="6" Canvas.Top="6"/>
+        	<Path x:Name="path6" Data="M18,2.5 C9.43959,2.5 2.5,9.43959 2.5,18 C2.5,26.5604 9.43959,33.5 18,33.5 C26.5604,33.5 33.5,26.5604 33.5,18 C33.5,9.43959 26.5604,2.5 18,2.5 z M18,0.5 C27.665,0.5 35.5,8.33502 35.5,18 C35.5,27.665 27.665,35.5 18,35.5 C8.33502,35.5 0.5,27.665 0.5,18 C0.5,8.33502 8.33502,0.5 18,0.5 z" Fill="#FF74BFCB" HorizontalAlignment="Left" Height="15" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="15" Canvas.Left="10.5" Canvas.Top="10.833"/>
+        </Canvas>
+        <Canvas Margin="1245,728,18,12" Tapped="RateUs_event">
+        	<Path Data="M29.6,0 L125.15,0 L125.15,28 L0,28 z" Fill="#FF18909C" HorizontalAlignment="Left" Height="28" Stretch="Fill" Stroke="Black" StrokeThickness="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="103.15"/>
+        	<TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Rate Us" VerticalAlignment="Top" Width="58" FontSize="14.667" FontFamily="Comic Sans MS" Canvas.Left="45" Canvas.Top="2"/>
+        	<Ellipse HorizontalAlignment="Left" Height="18" Stroke="White" VerticalAlignment="Top" Width="20" Canvas.Left="22" Canvas.Top="5"/>
+        	<Path Data="M1289.26,746.375 L1291.26,742.375 L1293.76,746.375 L1297.77,747.125 L1294.52,749.25 L1296.52,752.875 L1291.64,750.125 L1286.75,753.375 L1288.38,749 L1284.5,748 z" HorizontalAlignment="Left" Height="12" Stretch="Fill" Stroke="White" UseLayoutRounding="False" VerticalAlignment="Top" Width="14.25" Canvas.Left="24.9" Canvas.Top="6.625"/>
+        </Canvas>
+    </Grid>
+</Page>
